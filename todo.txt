@@ -1,0 +1,26 @@
+Data:
+    - Memory Card
+        - Title
+        - Id
+        - beenSelected
+        - img
+    - Scores
+        - Current Score
+        - High Score
+
+Hooks
+    - Sate for current score
+    - State for max score (useEffect?)
+    - API calls for images
+
+Components
+    - Memory Card
+    - Total score
+    - Current Score
+
+Functions
+    - Shuffle Cards on load and when user selects a card - could be random sequence of numbers for indexing in to memory card array?
+    - Set a card to beenSelected
+    - Count beenSelected to get current score
+    - set all memory cards to !beenSelected
+    - API call to get images 
