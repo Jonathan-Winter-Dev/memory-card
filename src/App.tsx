@@ -23,6 +23,10 @@ export default function App() {
     cardThree,
   ]);
 
+  useEffect(() => {
+    shuffleCardArr();
+  }, []);
+
   function shuffleCardArr() {
     setCardArr(shuffleArray([...cardArr]));
   }
