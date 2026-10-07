@@ -1,20 +1,12 @@
 import Card from "./Card";
 import CardData from "./cardData";
 import { useEffect, useState } from "react";
+import shuffleArray from "./utils/shuffleArray";
+import ScoreDisplay from "./Score";
 
-const cardOne: CardData = new CardData("Jon");
-const cardTwo: CardData = new CardData("Adeline");
+const cardOne: CardData = new CardData("Mario");
+const cardTwo: CardData = new CardData("Toad");
 const cardThree: CardData = new CardData("Cheese");
-
-function shuffleArray(array: CardData[]): CardData[] {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = array[i];
-    array[i] = array[j];
-    array[j] = temp;
-  }
-  return array;
-}
 
 export default function App() {
   const [cardArr, setCardArr] = useState<CardData[]>([
@@ -49,8 +41,6 @@ export default function App() {
 
     if (!card) throw new Error(`Card with ID ${id} not found.`);
 
-    console.log(card);
-
     if (card.beenSelected) {
       resetGame();
       return;
@@ -84,8 +74,8 @@ export default function App() {
   return (
     <div className="">
       <div className="scoreContainer">
-        <p>{`Current Score: ${currentScore}`}</p>
-        <p>{`High Score: ${highScore}`}</p>
+        <ScoreDisplay score={currentScore} type="Current" />
+        <ScoreDisplay score={highScore} type="High" />
       </div>
       <div className="cardsContainer">{cards}</div>
     </div>
