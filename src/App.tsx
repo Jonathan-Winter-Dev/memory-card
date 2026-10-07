@@ -24,6 +24,7 @@ export default function App() {
   ]);
 
   const [currentScore, setCurrentScore] = useState<number>(0);
+  const [highScore, setHighScore] = useState<number>(0);
 
   useEffect(() => {
     shuffleCardArr();
@@ -34,11 +35,11 @@ export default function App() {
   }
 
   function resetGame() {
-    setCardArr(
-      cardArr.map((card) => {
-        return { ...card, beenSelected: false };
-      }),
-    );
+    const newCardArr = cardArr.map((card) => {
+      return { ...card, beenSelected: false };
+    });
+
+    setCardArr(shuffleArray(newCardArr));
 
     setCurrentScore(0);
   }
@@ -56,6 +57,8 @@ export default function App() {
     }
 
     setCurrentScore(currentScore + 1);
+
+    if (currentScore >= highScore) setHighScore(highScore + 1);
 
     const newCardArr = cardArr.map((item) => {
       if (id === item.id) {
@@ -80,7 +83,10 @@ export default function App() {
 
   return (
     <div className="">
-      <div className="scoreContainer">{`Current Score: ${currentScore}`}</div>
+      <div className="scoreContainer">
+        <p>{`Current Score: ${currentScore}`}</p>
+        <p>{`High Score: ${highScore}`}</p>
+      </div>
       <div className="cardsContainer">{cards}</div>
     </div>
   );
