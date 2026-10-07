@@ -8,6 +8,11 @@ const cardOne: CardData = new CardData("Mario");
 const cardTwo: CardData = new CardData("Toad");
 const cardThree: CardData = new CardData("Cheese");
 
+function hasWonGame(score: number, maxScore: number): boolean {
+  if (score >= maxScore) return true;
+  return false;
+}
+
 export default function App() {
   const [cardArr, setCardArr] = useState<CardData[]>([
     cardOne,
@@ -18,6 +23,7 @@ export default function App() {
   const [currentScore, setCurrentScore] = useState<number>(0);
   const [highScore, setHighScore] = useState<number>(0);
 
+  // Shuffle cards on load
   useEffect(() => {
     shuffleCardArr();
   }, []);
@@ -47,6 +53,13 @@ export default function App() {
     }
 
     setCurrentScore(currentScore + 1);
+
+    if (hasWonGame(currentScore + 1, cardArr.length)) {
+      alert("Won big boy");
+      setHighScore(highScore + 1);
+      resetGame();
+      return;
+    }
 
     if (currentScore >= highScore) setHighScore(highScore + 1);
 
