@@ -10,7 +10,7 @@ type CardProps = {
 export default function Card({ name, id, onClick, beenSelected }: CardProps) {
   return (
     <div
-      className={`card ${beenSelected ? `selected` : ""}`}
+      className={`card ${beenSelected ? `beenSelected` : ""}`}
       data-id={id}
       onClick={() => onClick(id)}
     >

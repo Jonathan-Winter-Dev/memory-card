@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const apiKey: string = "pKEY6YQFcQJRG8NddeLGr8tHbc3gpACM";
+const apiKey: string = "pukzIEaxPmsxN8btWdH6GILpUm1l7UgF";
 
 type ApiImageProps = {
   name: string;
