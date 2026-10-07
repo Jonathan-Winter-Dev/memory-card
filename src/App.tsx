@@ -23,6 +23,10 @@ export default function App() {
     cardThree,
   ]);
 
+  function shuffleCardArr() {
+    setCardArr(shuffleArray([...cardArr]));
+  }
+
   function handleCardClick(id: string) {
     setCardArr(
       cardArr.map((item) => {
@@ -33,6 +37,8 @@ export default function App() {
         }
       }),
     );
+
+    shuffleCardArr();
   }
 
   const cards = cardArr.map((card) => (
