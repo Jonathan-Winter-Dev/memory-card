@@ -22,7 +22,7 @@ export default function ApiImage({ name }: ApiImageProps) {
 
         const jsonResponse = await response.json();
 
-        setUrl(jsonResponse.data[0].images.fixed_height_still.url);
+        setUrl(jsonResponse.data[0].images.original_still.url);
       } catch (error) {
         if (error instanceof Error) {
           console.log(error.message);

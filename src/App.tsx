@@ -9,8 +9,7 @@ const cardTwo: CardData = new CardData("Toad");
 const cardThree: CardData = new CardData("Cheese");
 
 function hasWonGame(score: number, maxScore: number): boolean {
-  if (score >= maxScore) return true;
-  return false;
+  return score >= maxScore;
 }
 
 export default function App() {
@@ -19,18 +18,13 @@ export default function App() {
     cardTwo,
     cardThree,
   ]);
-
   const [currentScore, setCurrentScore] = useState<number>(0);
   const [highScore, setHighScore] = useState<number>(0);
 
   // Shuffle cards on load
   useEffect(() => {
-    shuffleCardArr();
-  }, []);
-
-  function shuffleCardArr() {
     setCardArr(shuffleArray(structuredClone(cardArr)));
-  }
+  }, []);
 
   function resetGame() {
     const newCardArr = cardArr.map((card) => {
