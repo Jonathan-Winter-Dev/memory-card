@@ -7,29 +7,24 @@ import getCardsData from "./getCardsData";
 
 const NUMBER_OF_CARDS_TO_BE_MADE: number = 10;
 
-const cardDataArr = await getCardsData(NUMBER_OF_CARDS_TO_BE_MADE);
-
 function hasWonGame(score: number, maxScore: number): boolean {
   return score >= maxScore;
 }
 
-function createCardData(): CardData[] {
-  const arr: CardData[] = [];
-  for (let i = 0; i < 10; i++) {
-    arr.push(new CardData());
-  }
-
-  return arr;
-}
-
 export default function App() {
-  const [cardArr, setCardArr] = useState<CardData[]>(cardDataArr);
+  const [cardArr, setCardArr] = useState<CardData[]>([]);
   const [currentScore, setCurrentScore] = useState<number>(0);
   const [highScore, setHighScore] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(true);
 
-  // Shuffle cards on load
   useEffect(() => {
-    setCardArr(shuffleArray(structuredClone(cardArr)));
+    async function loadCards() {
+      const cards = await getCardsData(NUMBER_OF_CARDS_TO_BE_MADE);
+      setCardArr(shuffleArray(cards));
+      setLoading(false);
+    }
+
+    loadCards();
   }, []);
 
   function resetGame() {
@@ -90,7 +85,9 @@ export default function App() {
         <ScoreDisplay score={currentScore} type="Current" />
         <ScoreDisplay score={highScore} type="High" />
       </div>
-      <div className="cardsContainer">{cards}</div>
+      <div className="cardsContainer">
+        {loading ? <h1>Loading...</h1> : cards}
+      </div>
     </div>
   );
 }
