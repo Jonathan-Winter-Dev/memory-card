@@ -1,28 +1,19 @@
 import { useEffect, useState } from "react";
 
-const apiKey: string = "pukzIEaxPmsxN8btWdH6GILpUm1l7UgF";
-
-type ApiImageProps = {
-  name: string;
-};
-
-export default function ApiImage({ name }: ApiImageProps) {
+export default function ApiImage() {
   const [url, setUrl] = useState<string | undefined>(undefined);
 
   useEffect(() => {
     async function fetchImage() {
       try {
-        const response = await fetch(
-          `http://api.giphy.com/v1/gifs/search?q=${name}&api_key=${apiKey}&limit=1`,
-        );
+        const response = await fetch(`https://picsum.photos/400`);
+        console.log(response);
 
         if (!response.ok) {
           throw new Error(`HTTP error: ${response.status}`);
         }
 
-        const jsonResponse = await response.json();
-
-        setUrl(jsonResponse.data[0].images.original_still.url);
+        setUrl(response.url);
       } catch (error) {
         if (error instanceof Error) {
           console.log(error.message);
@@ -31,6 +22,6 @@ export default function ApiImage({ name }: ApiImageProps) {
     }
 
     fetchImage();
-  }, [name]);
+  }, []);
   return <img src={url} alt="" />;
 }

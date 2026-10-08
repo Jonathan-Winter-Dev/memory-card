@@ -70,7 +70,6 @@ export default function App() {
 
   const cards = cardArr.map((card) => (
     <Card
-      name={card.name}
       onClick={handleCardClick}
       id={card.id}
       key={card.id}
