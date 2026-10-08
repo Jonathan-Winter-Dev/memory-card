@@ -3,21 +3,27 @@ import CardData from "./cardData";
 import { useEffect, useState } from "react";
 import shuffleArray from "./utils/shuffleArray";
 import ScoreDisplay from "./Score";
+import getCardsData from "./getCardsData";
 
-const cardOne: CardData = new CardData("Mario");
-const cardTwo: CardData = new CardData("Toad");
-const cardThree: CardData = new CardData("Cheese");
+const NUMBER_OF_CARDS_TO_BE_MADE: number = 10;
+
+const cardDataArr = await getCardsData(NUMBER_OF_CARDS_TO_BE_MADE);
 
 function hasWonGame(score: number, maxScore: number): boolean {
   return score >= maxScore;
 }
 
+function createCardData(): CardData[] {
+  const arr: CardData[] = [];
+  for (let i = 0; i < 10; i++) {
+    arr.push(new CardData());
+  }
+
+  return arr;
+}
+
 export default function App() {
-  const [cardArr, setCardArr] = useState<CardData[]>([
-    cardOne,
-    cardTwo,
-    cardThree,
-  ]);
+  const [cardArr, setCardArr] = useState<CardData[]>(cardDataArr);
   const [currentScore, setCurrentScore] = useState<number>(0);
   const [highScore, setHighScore] = useState<number>(0);
 
@@ -70,6 +76,7 @@ export default function App() {
 
   const cards = cardArr.map((card) => (
     <Card
+      imagePath={card.imageSrc}
       onClick={handleCardClick}
       id={card.id}
       key={card.id}

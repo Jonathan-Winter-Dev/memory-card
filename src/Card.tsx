@@ -1,21 +1,23 @@
-import ApiImage from "./ApiImage";
-
 type CardProps = {
-  name: string;
+  imagePath: string;
   id: string;
   beenSelected: boolean;
   onClick: (id: string) => void;
 };
 
-export default function Card({ name, id, onClick, beenSelected }: CardProps) {
+export default function Card({
+  imagePath,
+  id,
+  onClick,
+  beenSelected,
+}: CardProps) {
   return (
     <div
       className={`card ${beenSelected ? `beenSelected` : ""}`}
       data-id={id}
       onClick={() => onClick(id)}
     >
-      <ApiImage name={name} />
-      <h1>{name}</h1>
+      <img src={imagePath} alt="" />
     </div>
   );
 }
