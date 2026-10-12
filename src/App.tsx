@@ -16,6 +16,7 @@ export default function App() {
   const [currentScore, setCurrentScore] = useState<number>(0);
   const [highScore, setHighScore] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
+  const [clickEnabled, setClickEnabled] = useState<boolean>(true);
 
   useEffect(() => {
     async function loadCards() {
@@ -38,6 +39,9 @@ export default function App() {
   }
 
   function handleCardClick(id: string) {
+    if (!clickEnabled) return;
+    setClickEnabled(false);
+
     const card = cardArr.find((item) => item.id === id);
 
     if (!card) throw new Error(`Card with ID ${id} not found.`);
@@ -67,6 +71,7 @@ export default function App() {
     });
 
     setCardArr(shuffleArray(newCardArr));
+    setClickEnabled(true);
   }
 
   const cards = cardArr.map((card) => (
@@ -80,7 +85,7 @@ export default function App() {
   ));
 
   return (
-    <div className="">
+    <>
       <div className="scoreContainer">
         <ScoreDisplay score={currentScore} type="Current" />
         <ScoreDisplay score={highScore} type="High" />
@@ -88,6 +93,6 @@ export default function App() {
       <div className="cardsContainer">
         {loading ? <h1>Loading...</h1> : cards}
       </div>
-    </div>
+    </>
   );
 }
