@@ -5,6 +5,7 @@ import shuffleArray from "./utils/shuffleArray";
 import ScoreDisplay from "./Score";
 import getCardsData from "./getCardsData";
 import logo from "./assets/memory-icon.svg";
+import Loading from "./Loading";
 
 const NUMBER_OF_CARDS_TO_BE_MADE: number = 8;
 
@@ -97,9 +98,7 @@ export default function App() {
         </div>
         <ScoreDisplay score={highScore} type="High" />
       </div>
-      <div className="cardsContainer">
-        {loading ? <h1>Loading...</h1> : cards}
-      </div>
+      {loading ? <Loading /> : <div className="cardsContainer">{cards}</div>}
     </>
   );
 }
