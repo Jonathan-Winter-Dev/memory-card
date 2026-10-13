@@ -6,7 +6,7 @@ import ScoreDisplay from "./Score";
 import getCardsData from "./getCardsData";
 import logo from "./assets/memory-icon.svg";
 
-const NUMBER_OF_CARDS_TO_BE_MADE: number = 12;
+const NUMBER_OF_CARDS_TO_BE_MADE: number = 8;
 
 function hasWonGame(score: number, maxScore: number): boolean {
   return score >= maxScore;
@@ -90,7 +90,9 @@ export default function App() {
       <div className="scoreContainer">
         <ScoreDisplay score={currentScore} type="Current" />
         <div className="titleContainer">
-          <h1>Memory Trainer</h1>
+          <span className="title">
+            <h1>Memory Trainer</h1>
+          </span>
           <img src={logo} role="image" alt="memory game icon" />
         </div>
         <ScoreDisplay score={highScore} type="High" />
