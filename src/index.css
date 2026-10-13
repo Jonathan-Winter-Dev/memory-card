@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+
 /* BEGIN CSS RESET - https://gist.github.com/mindplay-dk/62243f634cdcce4f43d943c36378137d*/
 
 /* Padding and borders should not change an element's declared size. */
@@ -48,12 +50,6 @@ body {
   min-height: 100svh;
 }
 
-/* Reserves space for the scrollbar, when the scrollbar is not showing.
-   Prevents flicker when changes on the page cause the scrollbar to toggle. */
-html {
-  scrollbar-gutter: stable;
-}
-
 /* Scroll events captured by the scrolling area you're pointing at, by default. */
 html {
   overscroll-behavior: contain;
@@ -84,17 +80,6 @@ h4,
 h5,
 h6 {
   line-height: 1.1;
-}
-
-/* Prevents long URLs or unbreakable strings from blowing out their container. */
-p,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  overflow-wrap: break-word;
 }
 
 /* Smarter line-breaking:
@@ -260,31 +245,46 @@ q::after {
 /* END CSS RESET */
 
 :root {
-  background-color: rgb(0, 0, 48);
-  color: wheat;
+  --dust-grey: #f3f5ec;
+  --black: #040404;
+  --dark-teal: #13505b;
+  --cerulean: #0c7489;
+  --orange: #ffa400;
+
+  background-color: var(--dust-grey);
+
+  font-family: "roboto", Impact, "Arial Narrow Bold", sans-serif;
 }
 
 body {
   display: grid;
   grid-template-columns: 1fr;
+  min-width: 100%;
 }
 
 .cardsContainer {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1em;
+  padding: 1em;
   align-items: center;
   justify-items: center;
 }
 
-.card {
-  border-radius: 15px;
-  padding: 10px;
-  background-color: wheat;
+.card,
+.card img {
+  border-radius: 10px;
 }
 
-.card img {
-  border-radius: calc(15px - 10px);
+.card {
+  border-radius: 15px;
+  box-shadow: rgba(149, 157, 165, 0.555) 0px 8px 24px;
+  transition: 0.25s ease-in-out;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: rgba(100, 100, 111, 0.911) 0px 7px 29px 0px;
 }
 
 .scoreContainer {
@@ -293,4 +293,21 @@ body {
   height: 5em;
   align-items: center;
   padding: 2em;
+  background-color: var(--cerulean);
+  color: white;
+  font-weight: 700;
+  font-size: 1.2em;
+}
+
+.titleContainer {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  flex-wrap: nowrap;
+  text-wrap: nowrap;
+}
+
+.titleContainer svg {
+  height: 100%;
+  color: white;
 }

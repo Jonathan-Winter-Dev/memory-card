@@ -3,5 +3,5 @@ type ScoreProps = {
   type: string;
 };
 export default function ScoreDisplay({ score, type }: ScoreProps) {
-  return <h3>{`${type}: ${score}`}</h3>;
+  return <h2>{`${type}: ${score}`}</h2>;
 }
