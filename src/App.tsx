@@ -38,10 +38,12 @@ export default function App() {
     setCardArr(shuffleArray(newCardArr));
 
     setCurrentScore(0);
+    setClickEnabled(true);
   }
 
   function handleCardClick(id: string) {
     if (!clickEnabled) return;
+
     setClickEnabled(false);
 
     const card = cardArr.find((item) => item.id === id);
