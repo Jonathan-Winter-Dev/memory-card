@@ -20,7 +20,7 @@ A memory game built with React as part of [The Odin Project](https://www.theodin
 ## Technologies
 
 - React
-- JavaScript
+- TypeScript
 - CSS
 - External API
 
